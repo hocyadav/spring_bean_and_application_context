@@ -3,4 +3,13 @@
   <groupId>com.hari</groupId>
   <artifactId>spring_bean_n_appl_context</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  		<version>5.2.7.RELEASE</version>
+  	</dependency>
+  </dependencies>
+  
 </project>
