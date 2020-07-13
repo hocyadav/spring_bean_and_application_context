@@ -1,22 +1,36 @@
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 import com.service.ServiceClass;
+import com.service.annotationOrJavaBases.MyConfig;
 
 public class Test {
 	public static void main(String[] args) {
-		//m1 - working
+		//NEW keyword 
 		ServiceClass service = new ServiceClass();//old way
 		service.fun();
 		
+		//XML based
 		beanFactory__XmlBeanFactory();//m2 - working - method is deprecated but still we can get bean
 		beanFactory__ClassPathXmlApplicationContext();
 		applicationContext__ClassPathXmlApplicationContext();
 		applicationContext__FileSystemXmlApplicationContext();
+		
+		//JAVA Bases OR Annotation based
+		applicationContext__Annotation();
+		
+		//NOTE: annotation based configuration can be used with XML(i.e. xml file) or JAVA based(i.e. @config)
+	}
+
+	private static void applicationContext__Annotation() {
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfig.class);
+		ServiceClass bean = applicationContext.getBean("serviceBean", ServiceClass.class);
+		bean.fun();
 	}
 
 	private static void beanFactory__XmlBeanFactory() {
